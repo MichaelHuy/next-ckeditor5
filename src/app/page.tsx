@@ -1,7 +1,24 @@
+'use client'
 import Image from "next/image";
 import styles from "./page.module.css";
 
+import dynamic from 'next/dynamic'
+
+// const TextEditor = dynamic(() => import('./Components/TextEditor'), {
+//   ssr: false,
+// })
+
+const CustomEditor = dynamic(() => {
+  return import('./components/CustomEditor');
+}, { ssr: false });
+
 export default function Home() {
+
+  const getDataEditor = (data: any) => {
+    console.log('getDataEdirot: ' + JSON.stringify(data))
+
+  }
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -27,6 +44,11 @@ export default function Home() {
           </a>
         </div>
       </div>
+
+      <CustomEditor
+        getDataEditor={getDataEditor}
+        initialData='<h1>Hello from CKEditor in Next.js!</h1>'
+      />
 
       <div className={styles.center}>
         <Image
