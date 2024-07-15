@@ -1,3 +1,8 @@
+'use client'
+
+import 'ckeditor5/ckeditor5.css';
+import '../App.css'
+
 import {
     AccessibilityHelp,
     Alignment,
@@ -18,7 +23,6 @@ import {
     Heading,
     Highlight,
     HorizontalLine,
-    HtmlEmbed,
     ImageBlock,
     ImageCaption,
     ImageInline,
@@ -33,12 +37,20 @@ import {
     Link,
     LinkImage,
     List,
-    ListProperties,
     Paragraph,
+    RemoveFormat,
     SelectAll,
     SpecialCharacters,
+    SpecialCharactersArrows,
+    SpecialCharactersCurrency,
+    SpecialCharactersEssentials,
+    SpecialCharactersLatin,
+    SpecialCharactersMathematical,
+    SpecialCharactersText,
     Strikethrough,
     Style,
+    Subscript,
+    Superscript,
     Table,
     TableCaption,
     TableCellProperties,
@@ -49,7 +61,6 @@ import {
     Underline,
     Undo
 } from 'ckeditor5';
-import { useEffect, useRef, useState } from 'react';
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 
@@ -73,7 +84,10 @@ const editorConfig = {
             'italic',
             'underline',
             'strikethrough',
+            'subscript',
+            'superscript',
             'code',
+            'removeFormat',
             '|',
             'specialCharacters',
             'horizontalLine',
@@ -83,7 +97,6 @@ const editorConfig = {
             'highlight',
             'blockQuote',
             'codeBlock',
-            'htmlEmbed',
             '|',
             'alignment',
             '|',
@@ -116,7 +129,6 @@ const editorConfig = {
         Heading,
         Highlight,
         HorizontalLine,
-        HtmlEmbed,
         ImageBlock,
         ImageCaption,
         ImageInline,
@@ -131,12 +143,20 @@ const editorConfig = {
         Link,
         LinkImage,
         List,
-        ListProperties,
         Paragraph,
+        RemoveFormat,
         SelectAll,
         SpecialCharacters,
+        SpecialCharactersArrows,
+        SpecialCharactersCurrency,
+        SpecialCharactersEssentials,
+        SpecialCharactersLatin,
+        SpecialCharactersMathematical,
+        SpecialCharactersText,
         Strikethrough,
         Style,
+        Subscript,
+        Superscript,
         Table,
         TableCaption,
         TableCellProperties,
@@ -236,13 +256,6 @@ const editorConfig = {
             }
         }
     },
-    list: {
-        properties: {
-            styles: true,
-            startIndex: true,
-            reversed: true
-        }
-    },
     placeholder: 'Type or paste your content here!',
     style: {
         definitions: [
@@ -298,20 +311,12 @@ const editorConfig = {
     }
 };
 
-function CustomEditor(props) {
-    const { getDataEditor } = props
+function CustomEditorCode(props: any) {
     return (
         <CKEditor
             editor={ClassicEditor}
             config={editorConfig}
-            data={props.initialData}
-            onChange={(event, editor) => {
-                const data = editor.getData();
-                getDataEditor(data)
-                console.log({ event, editor, data });
-            }}
         />
-    )
+    );
 }
-
-export default CustomEditor;
+export default CustomEditorCode
